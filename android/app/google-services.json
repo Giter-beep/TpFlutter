@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "898556410462",
+    "project_id": "smart-notes-app-2a59b",
+    "storage_bucket": "smart-notes-app-2a59b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898556410462:android:9f9808cb93a5d639a852cf",
+        "android_client_info": {
+          "package_name": "com.example.smart_notes_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUAC5F-2tPcWl1bVDeSzivfhiTrwM7xUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
