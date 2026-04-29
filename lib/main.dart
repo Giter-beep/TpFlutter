@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 import 'package:provider/provider.dart';
 import 'services/note_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+
+  final prefs = await SharedPreferences.getInstance();
+
   runApp(
     ChangeNotifierProvider(
-      create: (_) => NoteService(),
+      create: (_) => NoteService(prefs), // 🔥 نمرر prefs هنا
       child: MyApp(),
     ),
   );
