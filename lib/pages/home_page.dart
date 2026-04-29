@@ -4,6 +4,7 @@ import '../models/note.dart';
 import '../services/note_service.dart';
 import 'create_page.dart';
 import 'detail_page.dart';
+import 'api_notes_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,35 +27,46 @@ class _HomePageState extends State<HomePage> {
         title: Text("Mes Notes"),
 
 
-        actions: [
-          Consumer<NoteService>(
-            builder: (_, service, __) {
-              return Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Text("${service.count}"),
-                ),
-              );
-            },
-          ),
+          actions: [
+            Consumer<NoteService>(
+              builder: (_, service, __) {
+                return Center(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text("${service.count}"),
+                  ),
+                );
+              },
+            ),
 
-          PopupMenuButton<String>(
-            onSelected: (value) {
-              final service = context.read<NoteService>();
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                final service = context.read<NoteService>();
 
-              if (value == "date_desc") service.sortByDateDesc();
-              if (value == "date_asc") service.sortByDateAsc();
-              if (value == "title_az") service.sortByTitleAZ();
-              if (value == "title_za") service.sortByTitleZA();
-            },
-            itemBuilder: (context) => [
-              PopupMenuItem(value: "date_desc", child: Text("Date ↓")),
-              PopupMenuItem(value: "date_asc", child: Text("Date ↑")),
-              PopupMenuItem(value: "title_az", child: Text("Titre A-Z")),
-              PopupMenuItem(value: "title_za", child: Text("Titre Z-A")),
-            ],
-          ),
-        ],
+                if (value == "date_desc") service.sortByDateDesc();
+                if (value == "date_asc") service.sortByDateAsc();
+                if (value == "title_az") service.sortByTitleAZ();
+                if (value == "title_za") service.sortByTitleZA();
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(value: "date_desc", child: Text("Date ↓")),
+                PopupMenuItem(value: "date_asc", child: Text("Date ↑")),
+                PopupMenuItem(value: "title_az", child: Text("Titre A-Z")),
+                PopupMenuItem(value: "title_za", child: Text("Titre Z-A")),
+              ],
+            ),
+
+            // ✅ نضيف هذا فقط
+            IconButton(
+              icon: Icon(Icons.cloud),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => ApiNotesPage()),
+                );
+              },
+            ),
+          ],
 
 
         bottom: PreferredSize(
